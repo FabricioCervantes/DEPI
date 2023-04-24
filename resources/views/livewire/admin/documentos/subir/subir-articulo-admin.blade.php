@@ -6,23 +6,53 @@
                 <x-label for="titulo" value="Título" />
                 <x-input id="titulo" class="block mt-1 w-full" type="text" wire:model.defer="articuloTitulo"
                     name="titulo" required />
-                @error('titulo')
+                @error('articuloTitulo')
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
-            <div class="mt-4">
-                <x-label for="autores" value="Autores" />
-                <x-input id="autores" class="block mt-1 w-full" type="text" wire:model.defer="articuloAutores"
-                    name="autores" required />
-                @error('autores')
-                    <span class="text-red-500 text-sm">El campo es obligatorio.</span>
-                @enderror
+
+            <div class="mt-4" id="autorParent">
+                @for ($i = 0; $i < $number; $i++)
+                    <div class="flex flex-wrap md:flex-nowrap gap-10 mt-5" id="autorContainer">
+                        <div class="w-full">
+                            <x-label for="autores" value="Nombre del autor" />
+                            <x-input class="block mt-1 w-full" type="text"
+                                wire:model.defer="articuloAutorNombre.{{ $i }}" name="autores" required />
+                            @error('articuloAutorNombre')
+                                <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                            @enderror
+                        </div>
+                        <div class="w-full">
+                            <x-label for="autores" value="Apellido del autor" />
+                            <x-input class="block mt-1 w-full" type="text"
+                                wire:model.defer="articuloAutorApellido.{{ $i }}" name="autores" required />
+                            @error('articuloAutorApellido')
+                                <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                            @enderror
+                        </div>
+                        <div class="w-full">
+                            <x-label for="articuloAutorSexo" value="Sexo" />
+                            <select
+                                class="border-gray-300 w-full mt-1 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                name="articuloAutorSexo" wire:model.defer="articuloAutorSexo.{{ $i }}">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>
+                            @error('articuloAutorSexo')
+                                <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                            @enderror
+                        </div>
+                    </div>
+                @endfor
             </div>
+            <x-secondary-button class="mt-5" id="autorNuevo" wire:click="aumentar">Agregar autor
+            </x-secondary-button>
             <div class="mt-4">
                 <x-label for="revista" value="Revista" />
                 <x-input id="revista" class="block mt-1 w-full" type="text" wire:model.defer="articuloRevista"
                     name="revista" required />
-                @error('revista')
+                @error('articuloRevista')
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
@@ -30,7 +60,7 @@
                 <x-label for="volumen" value="Volumen" />
                 <x-input id="volumen" class="block mt-1 w-full" type="number" wire:model.defer="articuloVolumen"
                     name="volumen" required />
-                @error('volumen')
+                @error('articuloVolumen')
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
@@ -38,7 +68,7 @@
                 <x-label for="fecha" value="Fecha de publicación" />
                 <x-input id="fecha" class="block mt-1 w-full" type="date" wire:model.defer="articuloFecha"
                     name="fecha" required />
-                @error('fecha')
+                @error('articuloFecha')
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
@@ -48,7 +78,7 @@
                     class="block my-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm h-32 resize-none"
                     type="text" wire:model.defer="articuloAbstract" name="titulo" required>
                 </textarea>
-                @error('abstract')
+                @error('articuloAbstract')
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
@@ -63,4 +93,5 @@
             </div>
         </div>
     </div>
+
 </div>

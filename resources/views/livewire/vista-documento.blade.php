@@ -128,6 +128,6 @@
 
     </div>
     <div class="flex justify-center w-full">
-        <iframe class="w-full" src="{{ asset('/build/assets/docs/' . $documento[0]->url) }}" frameborder="0"></iframe>
+        <iframe class="w-full" src="{{ asset('/storage/docs/' . $documento[0]->url) }}" frameborder="0"></iframe>
     </div>
 </div>

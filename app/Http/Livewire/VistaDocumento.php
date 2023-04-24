@@ -11,6 +11,7 @@ use Livewire\Component;
 
 class VistaDocumento extends Component
 {
+
     public function render()
     {
         $id = request('id');

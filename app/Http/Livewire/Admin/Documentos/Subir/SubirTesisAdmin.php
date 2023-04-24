@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Documentos\Subir;
 use App\Models\Docs;
 use App\Models\DocsAutores;
 use App\Models\Tesis;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -37,7 +38,7 @@ class SubirTesisAdmin extends Component
 
         $this->validate();
         $name = uniqid() . '.pdf';
-        $this->doc->storeAs('public/docs', $name);
+        $this->doc->storeAs('public/docs/', $name);
 
 
         $newDoc = Docs::create([
@@ -64,5 +65,10 @@ class SubirTesisAdmin extends Component
         ]);
 
         $this->reset(['doc']);
+
+        $id = $newDoc->idDoc;
+        $tipo = 2;
+
+        return Redirect::route('vista-documento', compact('id', 'tipo'));
     }
 }

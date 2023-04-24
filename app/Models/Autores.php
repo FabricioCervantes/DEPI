@@ -12,4 +12,10 @@ class Autores extends Model
     protected $table = 'autores';
     public $timestamps = false;
     protected $primaryKey = 'idAutor';
+
+    protected $fillable = [
+        'nombre',
+        'apellidos',
+        'sexo',
+    ];
 }
