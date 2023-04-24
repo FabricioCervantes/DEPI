@@ -52,13 +52,7 @@ class SubirArticuloAdmin extends Component
     {
         // $this->validate();
 
-        for ($i = 0; $i < $this->cont; $i++) {
-            if (array_key_exists($i, $this->articuloAutorNombre)) {
-                dd("Existe");
-            } else {
-                dd("no existe");
-            }
-        }
+
 
 
         $name = uniqid() . '.pdf';
