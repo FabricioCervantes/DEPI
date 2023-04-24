@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Documentos;
 use App\Http\Livewire\Articulos;
 use App\Models\Artículos;
 use App\Models\Autores;
+use App\Models\DocsAutores;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -28,7 +29,7 @@ class ArticulosAdmin extends Component
             Artículos::leftjoin('docs', 'articulos.idDoc', 'docs.idDoc')
             ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
             ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
-            ->select('articulos.autor', 'articulos.idDoc', 'articulos.revista', 'articulos.volumen', 'articulos.titulo', 'articulos.fecha', DB::raw("group_concat(distinct' ',autores.nombre, ' ', autores.apellidos) as autorNombre"))
+            ->select('articulos.autor', 'articulos.idDoc', 'articulos.revista', 'articulos.volumen', 'articulos.titulo', 'articulos.fecha', 'autores.idAutor', DB::raw("group_concat(distinct' ',autores.nombre, ' ', autores.apellidos) as autorNombre"))
             ->where('articulos.titulo', 'like', '%' . $this->search . '%')
             ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
             ->groupBy('articulos.idDoc')
@@ -71,6 +72,17 @@ class ArticulosAdmin extends Component
             array_push($this->idAutor, $item->idAutor);
         }
         $this->modal = true;
+    }
+
+    public function delete($idDoc, $idAutor)
+    {
+
+        Artículos::where('idDoc', $idDoc)->delete();
+        DocsAutores::where('idDoc', $idDoc)->delete();
+        Autores::where('idAutor', $idAutor)->delete();
+
+        $this->vaciarNombres();
+        $this->cerrarModal();
     }
 
     public function editarArticulo()

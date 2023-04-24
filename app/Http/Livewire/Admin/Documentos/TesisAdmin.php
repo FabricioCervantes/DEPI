@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Documentos;
 
 use App\Models\Autores;
+use App\Models\DocsAutores;
 use App\Models\Tesis;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -62,6 +63,16 @@ class TesisAdmin extends Component
 
 
         $this->modal = true;
+    }
+
+    public function delete($idDoc, $idAutor)
+    {
+
+        Tesis::where('idDoc', $idDoc)->delete();
+        DocsAutores::where('idDoc', $idDoc)->delete();
+        Autores::where('idAutor', $idAutor)->delete();
+
+        $this->cerrarModal();
     }
 
     public function editarTesis()
