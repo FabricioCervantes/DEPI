@@ -19,23 +19,23 @@
                 <div class="flex flex-wrap md:flex-nowrap justify-center gap-10">
                     <div class="relative">
                         <a href="#">
-                            <img class="h-64" src="{{ asset('/build/assets/img/g1.jpg') }}" alt="logo tec">
-                            <p class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                                Estadísticas</p>
+                            <img class="h-64" src="{{ asset('/build/assets/img/g1.jpg') }}" alt="estadisticas">
+                            <h2 class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                Estadísticas</>
                         </a>
                     </div>
                     <div class="relative">
                         <a href="#">
-                            <img class="h-64" src="{{ asset('/build/assets/img/g2.jpg') }}" alt="logo tec">
-                            <p class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                                Documentos</p>
+                            <img class="h-64" src="{{ asset('/build/assets/img/g2.jpg') }}" alt="documentos">
+                            <h2 class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                Documentos</h2>
                         </a>
                     </div>
                     <div class="relative">
                         <a href="">
-                            <img class="h-64" src="{{ asset('/build/assets/img/g3.jpg') }}" alt="logo tec">
-                            <p class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                                Contacto</p>
+                            <img class="h-64" src="{{ asset('/build/assets/img/g3.jpg') }}" alt="contacto">
+                            <h2 class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                Contacto</h2>
                         </a>
                     </div>
                 </div>
@@ -43,13 +43,16 @@
                     <h1 class="text-3xl">Sitios de Interés</h1>
                     <div class="md:flex gap-5 justify-center grid grid-cols-1">
                         <a href="https://www.tecnm.mx/">
-                            <img class="h-32" src="{{ asset('/build/assets/img/interes-tecnm.png') }}" alt="logo tec">
+                            <img class="h-32" src="{{ asset('/build/assets/img/interes-tecnm.png') }}"
+                                alt="interes-tecnm">
                         </a>
                         <a href="http://www.itmorelia.edu.mx/">
-                            <img class="h-32" src="{{ asset('/build/assets/img/interes-pnt.png') }}" alt="logo tec">
+                            <img class="h-32" src="{{ asset('/build/assets/img/interes-pnt.png') }}"
+                                alt="interes-ptn">
                         </a>
                         <a href="https://ecosistemaempresarialdemichoacan.com/">
-                            <img class="h-32" src="{{ asset('/build/assets/img/interes-eco.png') }}" alt="logo tec">
+                            <img class="h-32" src="{{ asset('/build/assets/img/interes-eco.png') }}"
+                                alt="interes-eco">
                         </a>
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                     <p class="w-96">depi@morelia.tecnm.mx</p>
                 </div>
             </div>
-            <img class="h-64" src="{{ asset('/build/assets/img/footer-tec.jpg') }}" alt="logo tec">
+            <img class="h-64" src="{{ asset('/build/assets/img/footer-tec.jpg') }}" alt="footer-tec">
         </div>
         <p class="text-sm mt-10 text-gray-400 text-center"> Tecnológico Nacional de México. Todos los Derechos
             reservados © 2023.
