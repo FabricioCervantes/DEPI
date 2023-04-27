@@ -68,12 +68,12 @@
                 </div>
                 <div class="text-center flex flex-col gap-2">
                     <h3 class="font-bold text-2xl">Campus 2</h3>
-                    <h4 class="w-96">Camino de la Arboleda S/N, Residencial San Jose de la Huerta, Tenencia Morelos.
-                        Morelia, Mich.</>
+                    <p class="w-96">Camino de la Arboleda S/N, Residencial San Jose de la Huerta, Tenencia Morelos.
+                        Morelia, Mich.</p>
                 </div>
                 <div class="text-center flex flex-col gap-2">
                     <h3 class="font-bold text-2xl">Contacto</h3>
-                    <h4 class="w-96">depi@morelia.tecnm.mx</>
+                    <p class="w-96">depi@morelia.tecnm.mx</p>
                 </div>
             </div>
             <img class="h-64" src="{{ asset('/build/assets/img/footer-tec.jpg') }}" alt="footer-tec">
