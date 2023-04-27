@@ -20,21 +20,21 @@
                     <div class="relative">
                         <a href="#">
                             <img class="h-64" src="{{ asset('/build/assets/img/g1.jpg') }}" alt="estadisticas">
-                            <h2 class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <h2 class="absolute text-5xl  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                                 Estadísticas</>
                         </a>
                     </div>
                     <div class="relative">
                         <a href="#">
                             <img class="h-64" src="{{ asset('/build/assets/img/g2.jpg') }}" alt="documentos">
-                            <h2 class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <h2 class="absolute text-5xl  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                                 Documentos</h2>
                         </a>
                     </div>
                     <div class="relative">
                         <a href="">
                             <img class="h-64" src="{{ asset('/build/assets/img/g3.jpg') }}" alt="contacto">
-                            <h2 class="absolute text-5xl text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            <h2 class="absolute text-5xl  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                                 Contacto</h2>
                         </a>
                     </div>
