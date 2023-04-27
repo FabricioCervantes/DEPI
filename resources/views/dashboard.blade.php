@@ -64,16 +64,16 @@
             <div class="flex flex-col gap-5">
                 <div class="text-center flex flex-col gap-2">
                     <h3 class="font-bold text-2xl">Campus 1</h3>
-                    <p class="w-96"> Avenida Tecnológico #1500, Col. Lomas de Santiaguito. Morelia, Mich.</p>
+                    <h4 class="w-96"> Avenida Tecnológico #1500, Col. Lomas de Santiaguito. Morelia, Mich.</>
                 </div>
                 <div class="text-center flex flex-col gap-2">
                     <h3 class="font-bold text-2xl">Campus 2</h3>
-                    <p class="w-96">Camino de la Arboleda S/N, Residencial San Jose de la Huerta, Tenencia Morelos.
-                        Morelia, Mich.</p>
+                    <h4 class="w-96">Camino de la Arboleda S/N, Residencial San Jose de la Huerta, Tenencia Morelos.
+                        Morelia, Mich.</>
                 </div>
                 <div class="text-center flex flex-col gap-2">
                     <h3 class="font-bold text-2xl">Contacto</h3>
-                    <p class="w-96">depi@morelia.tecnm.mx</p>
+                    <h4 class="w-96">depi@morelia.tecnm.mx</>
                 </div>
             </div>
             <img class="h-64" src="{{ asset('/build/assets/img/footer-tec.jpg') }}" alt="footer-tec">
