@@ -1,5 +1,7 @@
-<div class=" grid md:flex justify-between md:h-[90vh] gap-5  py-5 px-16 w-full">
-    <div class="flex flex-col gap-5 w-full divide-y justify-center divide-gray-800">
+@section('title', 'Vista de documento')
+
+<div class=" grid md:grid-cols-2 md:h-[90vh] gap-5 p-5 w-full">
+    <div class="flex flex-col gap-5  bg-white p-5 rounded-md justify-around divide-gray-800">
         @if ($documento[0]->idArticulo != null)
             <div class="">
                 <h1 class="text-2xl">Título</h1>
@@ -36,7 +38,6 @@
                 <p>
                     {{ $documento[0]->fecha }}
                 </p>
-                <hr class="border-1 mt-5 border-gray-900">
             </div>
         @elseif ($documento[0]->idTesis != null)
             <div class="">
@@ -74,8 +75,8 @@
             </div>
             <div>
                 <h1 class="text-2xl">Abstract</h1>
-                <p>
-                    The kinematics of the wetting front, i.e.,
+                <p class="truncate ... max-w-2xl">
+                    {{ $documento[0]->abstract }}
                 </p>
             </div>
             <div>
@@ -83,7 +84,6 @@
                 <p>
                     {{ $documento[0]->fecha }}
                 </p>
-                <hr class="border-1 mt-5 border-gray-900">
             </div>
         @elseif ($documento[0]->idProyecto != null)
             <div class="">
@@ -127,7 +127,11 @@
         @endif
 
     </div>
-    <div class="flex justify-center w-full">
-        <iframe class="w-full" src="{{ asset('/storage/docs/' . $documento[0]->url) }}" frameborder="0"></iframe>
+    <div class="hidden md:flex justify-center md:w-full">
+        <iframe class="md:w-full" src="{{ asset('/storage/docs/' . $documento[0]->url) }}" frameborder="0"></iframe>
     </div>
+
+    <a href="{{ asset('/storage/docs/' . $documento[0]->url) }}" download
+        class="p-5 bg-blue-950 text-white transition transform  duration-300 rounded-lg hover:bg-blue-900 md:hidden text-center">Ver
+        PDF</a>
 </div>

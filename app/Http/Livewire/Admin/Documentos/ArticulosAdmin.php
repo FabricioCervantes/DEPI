@@ -17,7 +17,7 @@ class ArticulosAdmin extends Component
     public $cant = 10;
     public $search;
 
-    public $titulo, $autorNombre = [], $autorApellido = [], $volumen, $revista, $fecha, $idArticulo, $idAutor = [];
+    public $titulo, $autorNombre = [], $autorApellido = [], $idAutor = [], $volumen, $revista, $fecha, $idArticulo;
 
 
     public $modal = false;
@@ -25,15 +25,32 @@ class ArticulosAdmin extends Component
 
     public function render()
     {
-        $articulos =
-            Artículos::leftjoin('docs', 'articulos.idDoc', 'docs.idDoc')
-            ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
-            ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
-            ->select('articulos.autor', 'articulos.idDoc', 'articulos.revista', 'articulos.volumen', 'articulos.titulo', 'articulos.fecha', 'autores.idAutor', DB::raw("group_concat(distinct' ',autores.nombre, ' ', autores.apellidos) as autorNombre"))
-            ->where('articulos.titulo', 'like', '%' . $this->search . '%')
-            ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
-            ->groupBy('articulos.idDoc')
-            ->paginate($this->cant);
+
+        $user = auth()->user();
+
+        if ($user->hasRole('Admin')) {
+            $articulos =
+                Artículos::leftjoin('docs', 'articulos.idDoc', 'docs.idDoc')
+                ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
+                ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
+                ->select('articulos.autor', 'articulos.idDoc', 'articulos.revista', 'articulos.volumen', 'articulos.titulo', 'articulos.fecha', 'autores.idAutor', DB::raw("group_concat(distinct' ',autores.nombre, ' ', autores.apellidos) as autorNombre"))
+                ->where('articulos.titulo', 'like', '%' . $this->search . '%')
+                ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
+                ->groupBy('articulos.idDoc')
+                ->paginate($this->cant);
+        }
+        if ($user->hasRole('Estudiante')  or $user->hasRole('Academico')) {
+            $articulos =
+                Artículos::leftjoin('docs', 'articulos.idDoc', 'docs.idDoc')
+                ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
+                ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
+                ->select('articulos.autor', 'articulos.idDoc', 'articulos.revista', 'articulos.volumen', 'articulos.titulo', 'articulos.fecha', 'autores.idAutor', DB::raw("group_concat(distinct' ',autores.nombre, ' ', autores.apellidos) as autorNombre"))
+                ->where('docs.idUsuario', $user->id)
+                // ->where('articulos.titulo', 'like', '%' . $this->search . '%')
+                // ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
+                ->groupBy('articulos.idDoc')
+                ->paginate($this->cant);
+        }
 
         return view('livewire.admin.documentos.articulos-admin', compact('articulos'));
     }
@@ -63,9 +80,6 @@ class ArticulosAdmin extends Component
         $this->volumen = $doc[0]->volumen;
         $this->idArticulo = $doc[0]->idDoc;
 
-
-
-
         foreach ($doc as $item) {
             array_push($this->autorNombre, $item->autorNombre);
             array_push($this->autorApellido, $item->autorApellido);
@@ -74,12 +88,15 @@ class ArticulosAdmin extends Component
         $this->modal = true;
     }
 
-    public function delete($idDoc, $idAutor)
+    public function delete($idDoc)
     {
+
 
         Artículos::where('idDoc', $idDoc)->delete();
         DocsAutores::where('idDoc', $idDoc)->delete();
-        Autores::where('idAutor', $idAutor)->delete();
+        foreach ($this->idAutor as $item) {
+            Autores::where('idAutor', $item)->delete();
+        }
 
         $this->vaciarNombres();
         $this->cerrarModal();

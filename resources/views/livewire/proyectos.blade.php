@@ -1,3 +1,5 @@
+@section('title', 'Proyectos')
+
 <div>
     <div class="pt-5 px-5 hidden md:flex gap-10">
         <div class="flex items-center">

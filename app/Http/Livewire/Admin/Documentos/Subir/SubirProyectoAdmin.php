@@ -24,15 +24,13 @@ class SubirProyectoAdmin extends Component
 
     public function render()
     {
-
-
-
-
         return view('livewire.admin.documentos.subir.subir-proyecto-admin');
     }
 
     public function upload()
     {
+        $user = auth()->user();
+
         // $this->validate();
         $name = uniqid() . '.pdf';
         $this->doc->storeAs('public/docs', $name);
@@ -40,7 +38,7 @@ class SubirProyectoAdmin extends Component
         $newDoc = Docs::create([
             'tipo' => 'proyecto',
             'url' => $name,
-            'idUsuario' => 32
+            'idUsuario' => $user->id
         ]);
 
         Proyectos::create([

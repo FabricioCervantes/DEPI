@@ -1,3 +1,5 @@
+@section('title', 'Subir proyecto')
+
 <div class="md:px-60 md:py-10">
     <div class="bg-white shadow-lg p-5 rounded-lg">
         <h1 class="text-5xl font-bold text-center">Subir proyecto</h1>

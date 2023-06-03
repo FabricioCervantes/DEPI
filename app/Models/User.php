@@ -11,7 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -23,10 +23,22 @@ class User extends Authenticatable
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
+     * 
+     * 
      */
+
     protected $fillable = [
-        'name',
+        'nombre',
+        'apellidos',
         'email',
+        'sexo',
+        'fechaNac',
+        'ncontrol',
+        'telefono',
+        'idIns',
+        'area',
+        'estado',
+        'tipou',
         'password',
     ];
 

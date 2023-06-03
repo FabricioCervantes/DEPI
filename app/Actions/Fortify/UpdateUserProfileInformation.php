@@ -18,7 +18,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string', 'max:255'],
+            'sexo' => ['required', 'string', 'max:255'],
+            'fechaNac' => ['required'],
+            'telefono' => ['required'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
@@ -27,12 +31,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->updateProfilePhoto($input['photo']);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'name' => $input['name'],
+                'nombre' => $input['nombre'],
+                'apellidos' => $input['apellidos'],
+                'fechaNac' => $input['fechaNac'],
+                'telefono' => $input['telefono'],
+                'sexo' => $input['sexo'],
                 'email' => $input['email'],
             ])->save();
         }
@@ -46,7 +56,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser(User $user, array $input): void
     {
         $user->forceFill([
-            'name' => $input['name'],
+            'nombre' => $input['nombre'],
+            'apellidos' => $input['apellidos'],
+            'sexo' => $input['sexo'],
+            'telefono' => $input['telefono'],
+            'fechaNac' => $input['fechaNac'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();

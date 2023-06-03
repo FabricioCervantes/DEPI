@@ -1,3 +1,4 @@
+@section('title', 'Subir artículo')
 <div class="md:px-60 md:py-10">
     <div class="bg-white shadow-lg p-5 rounded-lg">
         <h1 class="text-5xl font-bold text-center">Subir Articulo</h1>
@@ -43,6 +44,7 @@
                                 <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                             @enderror
                         </div>
+                        <x-secondary-button wire:click="eliminar({{ $i }})">Eliminar</x-secondary-button>
                     </div>
                 @endfor
             </div>

@@ -1,7 +1,8 @@
+@section('title', 'Contacto')
 <div class="hidden md:flex flex-col items-center justify-center h-[75vh] w-full p-5">
     <div class="bg-white overflow-hidden shadow-xl p-10 sm:rounded-lg">
         <h1 class="text-5xl text-center font-bold mb-10">¿Tienes alguna duda?</h1>
-        <form class="w-full max-w-lg">
+        <form class="md:w-full max-w-lg">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -63,7 +64,6 @@
             </div>
             <div class="flex justify-end">
                 <x-secondary-button>Enviar
-
                 </x-secondary-button>
             </div>
         </form>
@@ -71,7 +71,7 @@
 
 </div>
 <div class="md:hidden h-screen p-5">
-    <div class="bg-white w-full shadow-lg rounded p-5 h-5/6">
+    <div class="bg-white w-full shadow-lg rounded p-5">
         <h1 class="text-3xl font-bold text-center">¿Tienes alguna duda?</h1>
         <form class="pt-5" action="">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">

@@ -1,3 +1,4 @@
+@section('title', 'Subir tesis')
 <div class="md:px-60 md:py-10">
     <div class="bg-white shadow-lg p-5 rounded-lg">
         <h1 class="text-5xl font-bold text-center">Subir tesis</h1>
@@ -11,12 +12,42 @@
                 @enderror
             </div>
             <div class="mt-4">
-                <x-label for="tesisAutores" value="Autor" />
-                @error('tesisAutores')
-                    <span class="text-red-500 text-sm">El campo es obligatorio.</span>
-                @enderror
+                @for ($i = 0; $i < $number; $i++)
+                    <div class="flex flex-wrap md:flex-nowrap gap-10 mt-5" id="autorContainer">
+                        <div class="w-full">
+                            <x-label for="autores" value="Nombre del autor" />
+                            <x-input class="block mt-1 w-full" type="text"
+                                wire:model.defer="tesisAutorNombre.{{ $i }}" name="autores" required />
+                            @error('tesisAutorNombre')
+                                <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                            @enderror
+                        </div>
+                        <div class="w-full">
+                            <x-label for="autores" value="Apellido del autor" />
+                            <x-input class="block mt-1 w-full" type="text"
+                                wire:model.defer="tesisAutorApellido.{{ $i }}" name="autores" required />
+                            @error('tesisAutorApellido')
+                                <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                            @enderror
+                        </div>
+                        <div class="w-full">
+                            <x-label for="tesisAutorSexo" value="Sexo" />
+                            <select
+                                class="border-gray-300 w-full mt-1 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                name="tesisAutorSexo" wire:model.defer="tesisAutorSexo.{{ $i }}">
+                                <option value="">Seleccione una opción...</option>
+                                <option value="Hombre">Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>
+                            @error('tesisAutorSexo')
+                                <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                            @enderror
+                        </div>
+                    </div>
+                @endfor
                 <div class="">
-                    <x-secondary-button>Agregar autor</x-secondary-button>
+                    <x-secondary-button class="mt-5" id="autorNuevo" wire:click="aumentar">Agregar autor
+                    </x-secondary-button>
                 </div>
             </div>
             <div class="mt-4">

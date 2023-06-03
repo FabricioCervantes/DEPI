@@ -23,15 +23,35 @@ class ProyectosAdmin extends Component
 
     public function render()
     {
-        $proy =
-            ModelsProyectos::leftjoin('docs', 'proyectos.idDoc', 'docs.idDoc')
-            ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
-            ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
-            ->select('proyectos.fechaFin', 'proyectos.idDoc', 'proyectos.descripcion', 'proyectos.financiamiento', 'proyectos.titulo', 'proyectos.fechaInicio')
-            ->where('proyectos.titulo', 'like', '%' . $this->search . '%')
-            ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
-            ->groupBy('proyectos.idDoc')
-            ->paginate($this->cant);
+        $user = auth()->user();
+
+
+        if ($user->hasRole('Admin')) {
+            $proy =
+                ModelsProyectos::leftjoin('docs', 'proyectos.idDoc', 'docs.idDoc')
+                ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
+                ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
+                ->select('proyectos.fechaFin', 'proyectos.idDoc', 'proyectos.descripcion', 'proyectos.financiamiento', 'proyectos.titulo', 'proyectos.fechaInicio')
+                ->where('proyectos.titulo', 'like', '%' . $this->search . '%')
+                ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
+                ->groupBy('proyectos.idDoc')
+                ->paginate($this->cant);
+        }
+
+        if ($user->hasRole('Estudiante')) {
+            $proy =
+                ModelsProyectos::leftjoin('docs', 'proyectos.idDoc', 'docs.idDoc')
+                ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
+                ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
+                ->select('proyectos.fechaFin', 'proyectos.idDoc', 'proyectos.descripcion', 'proyectos.financiamiento', 'proyectos.titulo', 'proyectos.fechaInicio')
+                ->where('docs.idUsuario', $user->id)
+
+                // ->where('proyectos.titulo', 'like', '%' . $this->search . '%')
+                // ->orWhere('autores.apellidos', 'like', '%' . $this->search . '%')
+                ->groupBy('proyectos.idDoc')
+                ->paginate($this->cant);
+        }
+
 
         return view('livewire.admin.documentos.proyectos-admin', compact('proy'));
     }

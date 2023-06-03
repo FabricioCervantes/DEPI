@@ -1,3 +1,4 @@
+@section('title', 'Estadísticas')
 <div class="p-5">
     <h1 class="text-4xl md:text-5xl pt-5 text-center">
         ¡Bienvenido al panel de Estadísticas!

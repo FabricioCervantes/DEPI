@@ -13,24 +13,26 @@
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
-            <div class="flex justify-between">
-                <div class="mt-4">
-                    <x-label for="autorNombre" value="Nombre del autor" />
-                    <x-input id="autorNombre" class="block mt-1 w-full" type="text" wire:model.defer="autorNombre"
-                        name="autorNombre" required />
-                    @error('autorNombre')
-                        <span class="text-red-500 text-sm">El campo es obligatorio.</span>
-                    @enderror
+            @for ($i = 0; $i < count($autorNombre); $i++)
+                <div class="flex gap-5">
+                    <div class="mt-4 w-full">
+                        <x-label for="autorNombre" value="Nombre del autor" />
+                        <x-input id="autorNombre" class="block w-full" type="text"
+                            wire:model.defer="autorNombre.{{ $i }}" name="autorNombre" required />
+                        @error('autorNombre')
+                            <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                        @enderror
+                    </div>
+                    <div class="mt-4 w-full">
+                        <x-label for="autorApellidos" value="Apellido del autor" />
+                        <x-input id="autorApellidos" class="block mt-1 w-full" type="text"
+                            wire:model.defer="autorApellido.{{ $i }}" name="autorApellidos" required />
+                        @error('autorApellidos')
+                            <span class="text-red-500 text-sm">El campo es obligatorio.</span>
+                        @enderror
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <x-label for="autorApellidos" value="Apellido del autor" />
-                    <x-input id="autorApellidos" class="block mt-1 w-full" type="text"
-                        wire:model.defer="autorApellido" name="autorApellidos" required />
-                    @error('autorApellidos')
-                        <span class="text-red-500 text-sm">El campo es obligatorio.</span>
-                    @enderror
-                </div>
-            </div>
+            @endfor
             <div class="mt-4">
                 <x-label for="asesor" value="Asesor" />
                 <x-input id="asesor" class="block mt-1 w-full" type="text" wire:model.defer="asesor"
@@ -72,7 +74,7 @@
         <x-slot name="footer" class="gap-5">
             <div class="flex justify-between w-full">
                 <div>
-                    <x-danger-button wire:click="delete({{ $item->idDoc }}, '{{ $item->idAutor }}')">Eliminar
+                    <x-danger-button wire:click="delete({{ $item->idDoc }}">Eliminar
                     </x-danger-button>
                 </div>
                 <div>

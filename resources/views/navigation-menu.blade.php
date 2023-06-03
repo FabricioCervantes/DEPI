@@ -57,7 +57,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('sdc')">
+                    <x-nav-link href="{{ route('aliados') }}" :active="request()->routeIs('aliados')">
                         {{ __('Aliados estratégicos') }}
                     </x-nav-link>
                 </div>
@@ -70,6 +70,22 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link href="{{ route('administracion') }}" :active="request()->routeIs('administracion')">
                             {{ __('Panel de administración') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                @can('estudiante')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('docs') }}" :active="request()->routeIs('docs')">
+                            {{ __('Mis documentos') }}
+                        </x-nav-link>
+                    </div>
+                @endcan
+
+                @can('academico')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link href="{{ route('docs') }}" :active="request()->routeIs('docs')">
+                            {{ __('Mis documentos') }}
                         </x-nav-link>
                     </div>
                 @endcan
@@ -260,6 +276,21 @@
             <x-responsive-nav-link href="{{ route('contacto') }}" :active="request()->routeIs('contacto')">
                 {{ __('Contacto') }}
             </x-responsive-nav-link>
+            @can('admin')
+                <x-responsive-nav-link href="{{ route('administracion') }}" :active="request()->routeIs('administracion')">
+                    {{ __('Panel de adminstración') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('estudiante')
+                <x-responsive-nav-link href="{{ route('docs') }}" :active="request()->routeIs('docs')">
+                    {{ __('Mis Documentos') }}
+                </x-responsive-nav-link>
+            @endcan
+            @can('academico')
+                <x-responsive-nav-link href="{{ route('docs') }}" :active="request()->routeIs('docs')">
+                    {{ __('Mis Documentos') }}
+                </x-responsive-nav-link>
+            @endcan
 
         </div>
 
@@ -273,17 +304,21 @@
                     </div>
                 @endif
 
-                <div>
-                    <div class="font-medium text-base text-gray-800">Iniciar sesión</div>
-                    {{-- <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div> --}}
-                </div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <!-- Account Management -->
-                <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
+                @if (!auth()->check())
+                    <x-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
+                        {{ __('Iniciar sesión') }}
+                    </x-responsive-nav-link>
+                @endif
+
+                @if (auth()->check())
+                    <!-- Account Management -->
+                    <x-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
@@ -294,10 +329,11 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
-
-                    <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
+                    @if (auth()->check())
+                        <x-responsive-nav-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    @endif
                 </form>
 
                 <!-- Team Management -->

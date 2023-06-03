@@ -29,7 +29,7 @@ class VistaDocumento extends Component
             $documento = Tesis::leftjoin('docs', 'tesis.idDoc', 'docs.idDoc')
                 ->leftjoin('docs-autores', 'docs.idDoc', 'docs-autores.idDoc')
                 ->leftjoin('autores', 'docs-autores.idAutor', 'autores.idAutor')
-                ->select('tesis.departamento', 'tesis.idDoc', 'tesis.idTesis', 'tesis.asesor', 'tesis.nivel', 'tesis.titulo', 'tesis.fecha', 'autores.nombre as autorNombre', 'autores.apellidos as autorApellido', 'docs.url')
+                ->select('tesis.departamento', 'tesis.idDoc', 'tesis.idTesis', 'tesis.asesor', 'tesis.nivel', 'tesis.titulo', 'tesis.fecha', 'tesis.abstract', DB::raw("group_concat(' ',autores.nombre, ' ', autores.apellidos) as autorNombre"), 'docs.url')
                 ->where('tesis.idDoc', $id)
                 ->get();
         }
@@ -44,5 +44,9 @@ class VistaDocumento extends Component
 
 
         return view('livewire.vista-documento', compact('documento'));
+    }
+
+    function descargarPDF()
+    {
     }
 }

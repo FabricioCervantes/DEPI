@@ -19,5 +19,7 @@ class RolSeeder extends Seeder
         $role3 = Role::create(['name' => 'Academico']);
 
         Permission::create(['name' => 'admin'])->syncRoles([$role]);
+        Permission::create(['name' => 'estudiante'])->syncRoles([$role2]);
+        Permission::create(['name' => 'academico'])->syncRoles([$role3]);
     }
 }

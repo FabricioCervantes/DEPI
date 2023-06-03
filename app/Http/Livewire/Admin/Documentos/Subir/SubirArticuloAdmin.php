@@ -18,7 +18,7 @@ class SubirArticuloAdmin extends Component
     public $articuloTitulo, $articuloAutorNombre = [], $articuloAutorApellido = [], $articuloAutorSexo = [], $articuloRevista, $articuloVolumen, $articuloFecha, $articuloAbstract;
 
     public $doc;
-    public $cont = 0;
+    public $cont;
 
     protected $rules = [
         'articuloTitulo' => 'required',
@@ -37,30 +37,36 @@ class SubirArticuloAdmin extends Component
 
     public function render()
     {
-
         $number = $this->cont;
         return view('livewire.admin.documentos.subir.subir-articulo-admin', compact('number'));
     }
 
     public function aumentar()
     {
-        $this->cont++;
+        $this->cont = count($this->articuloAutorNombre) + 1;
     }
+
+    public function eliminar($index)
+    {
+        array_splice($this->articuloAutorNombre, $index, 1);
+        array_splice($this->articuloAutorApellido, $index, 1);
+        array_splice($this->articuloAutorSexo, $index, 1);
+        $this->cont = count($this->articuloAutorNombre) - (count($this->articuloAutorNombre) + 1);
+    }
+
 
 
     public function upload()
     {
-        // $this->validate();
-
-
-
+        $this->validate();
+        $user = auth()->user();
 
         $name = uniqid() . '.pdf';
         $this->doc->storeAs('public/docs/', $name);
         $newDoc = Docs::create([
             'tipo' => 'articulo',
             'url' => $name,
-            'idUsuario' => 32
+            'idUsuario' => $user->id,
         ]);
 
         for ($i = 0; $i < $this->cont; $i++) {

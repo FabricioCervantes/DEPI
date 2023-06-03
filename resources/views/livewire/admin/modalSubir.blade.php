@@ -2,9 +2,9 @@
     <x-dialog-modal maxWidth="xl" wire:model="modal" class="flex items-center justify-center">
         <x-slot name="title">{{ $title }}</x-slot>
         <x-slot name="content">
-            <div class="mt-4">
+            <div class="mt-4" autofocus>
                 <div class="flex flex-wrap gap-10 pt-10 justify-center items-center">
-                    <a href="{{ route($tesis) }}">
+                    <a class="" href="{{ route($tesis) }}">
                         <div class="flex flex-col gap-5 items-center justify-center">
                             <div class="w-32 bg-blue-950 h-32 rounded-full flex justify-center items-center">
                                 <div class="text-5xl">

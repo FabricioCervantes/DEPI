@@ -1,4 +1,5 @@
 <x-app-layout>
+    @section('title', 'DEPI')
     {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -6,11 +7,14 @@
     </x-slot> --}}
 
     <div class="bg-white pt-5 h-fit lg:h-[60vh]">
-        <h1 class="text-4xl text-center font-bold">Laboratorio Nacional del TECNM Para Impulsar la I+D+I en Ingeniería
+        <h1 class="text-4xl text-center font-bold" lang="es">Laboratorio Nacional del TECNM Para Impulsar la I+D+I en
+            Ingeniería
         </h1>
         <div class="flex-wrap md:flex-nowrap my-10 flex justify-center items-center lg:gap-20">
-            <img class="h-72" src="{{ asset('/build/assets/img/logo_tec.png') }}" alt="logo tec">
-            <img class="h-72" src="{{ asset('/build/assets/img/mapa.png') }}" alt="mapa tec">
+            <img media="(max-width: 600px)" class="h-72" srcset="{{ asset('/build/assets/img/logo_tec.png') }}"
+                alt="logo tec">
+            <img media="(min-width: 600px)" class="h-72" srcset="{{ asset('/build/assets/img/mapa.png') }}"
+                alt="mapa tec">
         </div>
     </div>
     <div class="py-12">
@@ -43,17 +47,18 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center items-center ">
-                    <h1 class="text-3xl">Sitios de Interés</h1>
+                    <h1 class="text-3xl pt-5" lang="en-us">Websites</h1>
                     <div class="md:flex gap-5 justify-center grid grid-cols-1">
-                        <a href="https://www.tecnm.mx/">
+                        <a href="https://www.tecnm.mx/" title="TECNM">
                             <img class="h-32" src="{{ asset('/build/assets/img/interes-tecnm.png') }}"
                                 alt="interes-tecnm">
                         </a>
-                        <a href="http://www.itmorelia.edu.mx/">
+                        <a href="http://www.itmorelia.edu.mx/" title="ITMORELIA">
                             <img class="h-32" src="{{ asset('/build/assets/img/interes-pnt.png') }}"
                                 alt="interes-ptn">
                         </a>
-                        <a href="https://ecosistemaempresarialdemichoacan.com/">
+                        <a href="https://ecosistemaempresarialdemichoacan.com/"
+                            title="ECOSISTEMA EMPRESARIAL MICHOACÁN">
                             <img class="h-32" src="{{ asset('/build/assets/img/interes-eco.png') }}"
                                 alt="interes-eco">
                         </a>
@@ -81,7 +86,8 @@
             </div>
             <img class="h-64" src="{{ asset('/build/assets/img/footer-tec.jpg') }}" alt="footer-tec">
         </div>
-        <p class="text-sm mt-10 text-gray-400 text-center"> Tecnológico Nacional de México. Todos los Derechos
+        <p class="text-sm mt-10 text-gray-400 text-center" lang="es"> Tecnológico Nacional de México. Todos los
+            Derechos
             reservados © 2023.
             Desarrollado por el
             Instituto

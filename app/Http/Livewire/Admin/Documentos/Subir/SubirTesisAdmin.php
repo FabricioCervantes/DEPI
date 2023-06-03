@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Documentos\Subir;
 
+use App\Models\Autores;
 use App\Models\Docs;
 use App\Models\DocsAutores;
 use App\Models\Tesis;
@@ -14,8 +15,9 @@ class SubirTesisAdmin extends Component
 
     use WithFileUploads;
 
-    public $tesisTitulo, $tesisAutores, $tesisAsesor, $tesisAño, $tesisNivel, $tesisDepartamento, $tesisResumen;
+    public $tesisTitulo, $tesisAutorNombre = [], $tesisAutorApellido = [], $tesisAutorSexo = [], $tesisAsesor, $tesisAño, $tesisNivel, $tesisDepartamento, $tesisResumen;
     public $doc;
+    public $cont = 0;
 
     protected $rules = [
         'tesisTitulo' => 'required',
@@ -30,11 +32,22 @@ class SubirTesisAdmin extends Component
 
     public function render()
     {
-        return view('livewire.admin.documentos.subir.subir-tesis-admin');
+        $number = $this->cont;
+        return view('livewire.admin.documentos.subir.subir-tesis-admin', compact('number'));
+    }
+
+    public function aumentar()
+    {
+        $this->cont++;
     }
 
     public function upload()
     {
+
+        $user = auth()->user();
+
+        // dd($user->id);
+
 
         $this->validate();
         $name = uniqid() . '.pdf';
@@ -44,8 +57,23 @@ class SubirTesisAdmin extends Component
         $newDoc = Docs::create([
             'tipo' => 'tesis',
             'url' => $name,
-            'idUsuario' => 101
+            'idUsuario' =>  $user->id,
         ]);
+
+        for ($i = 0; $i < $this->cont; $i++) {
+
+            $newAutor = Autores::create([
+                'nombre' => $this->tesisAutorNombre[$i],
+                'apellidos' => $this->tesisAutorApellido[$i],
+                'sexo' => $this->tesisAutorSexo[$i],
+            ]);
+
+            DocsAutores::create([
+                'idDoc' => $newDoc->idDoc,
+                'idAutor' => $newAutor->idAutor,
+            ]);
+        }
+
 
 
         Tesis::create([
@@ -59,10 +87,6 @@ class SubirTesisAdmin extends Component
             'fechaSubida' => date('Y-m-d')
         ]);
 
-        DocsAutores::create([
-            'idDoc' => $newDoc->idDoc,
-            'idAutor' => 268
-        ]);
 
         $this->reset(['doc']);
 
