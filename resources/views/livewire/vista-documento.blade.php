@@ -1,7 +1,7 @@
 @section('title', 'Vista de documento')
 
 <div class="grid md:grid-cols-2 md:h-[90vh] gap-5 p-5">
-    <div class="flex flex-col gap-5 bg-white p-5 rounded-md w-80 justify-around divide-gray-800">
+    <div class="flex flex-col gap-5 bg-white p-5 rounded-md w-80 md:w-full justify-around divide-gray-800">
         @if ($tipo === '1')
             <div class="">
                 <h1 class="text-2xl">Título</h1>
