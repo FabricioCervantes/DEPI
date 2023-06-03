@@ -2,7 +2,7 @@
 
 <div class="grid md:grid-cols-2 md:h-[90vh] gap-5 p-5 w-full">
     <div class="flex flex-col gap-5  bg-white p-5 rounded-md justify-around divide-gray-800">
-        @if ($documento[0]->idArticulo != null)
+        @if ($tipo === '1')
             <div class="">
                 <h1 class="text-2xl">Título</h1>
                 <p>
@@ -39,7 +39,7 @@
                     {{ $documento[0]->fecha }}
                 </p>
             </div>
-        @elseif ($documento[0]->idTesis != null)
+        @elseif ($tipo === '2')
             <div class="">
                 <h1 class="text-2xl">Título</h1>
                 <p>
@@ -85,7 +85,7 @@
                     {{ $documento[0]->fecha }}
                 </p>
             </div>
-        @elseif ($documento[0]->idProyecto != null)
+        @elseif ($tipo === '3')
             <div class="">
                 <h1 class="text-2xl">Título</h1>
                 <p>

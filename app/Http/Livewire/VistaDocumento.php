@@ -43,7 +43,7 @@ class VistaDocumento extends Component
         }
 
 
-        return view('livewire.vista-documento', compact('documento'));
+        return view('livewire.vista-documento', compact('documento', 'tipo'));
     }
 
     function descargarPDF()
