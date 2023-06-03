@@ -2,8 +2,8 @@
 
 <div class="overflow-hidden shadow-xl rounded-lg ">
     <div class="md:w-11/12 mt-10 flex justify-between items-center gap-5 pb-5">
-        <a href="javascript:history.back()" class="hidden md:flex flex-col gap-5 items-center justify-center">
-            <div class="w-12 ml-10 bg-blue-950 h-12 rounded-full flex justify-center items-center">
+        <a href="javascript:history.back()" class="hidden ml-4 md:flex flex-col gap-5 items-center justify-center">
+            <div class="w-12 ml-4 bg-blue-950 h-12 rounded-full flex justify-center items-center">
                 <div class="text-xl">
                     <i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i>
                 </div>
