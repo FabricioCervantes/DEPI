@@ -1,9 +1,9 @@
 @section('title', 'Aliados estratégicos')
 
 
-<div class="w-full rounded-e-md flex flex-col items-center p-5">
+<div class="w-full rounded-md flex flex-col items-center p-5">
     <h1 class="text-4xl font-bold text-center pb-5">Aliados estratégicos</h1>
-    <div class="grid grid-cols-4 max-w-6xl gap-5">
+    <div class="grid grid-cols-2 max-w-6xl gap-5">
         <img class="rounded-md" src="{{ asset('/build/assets/img/aliados/cenidet.png') }}" alt="cenidet">
         <img class="rounded-md" src="{{ asset('/build/assets/img/aliados/comimsa.png') }}" alt="comimsa">
         <img class="rounded-md" src="{{ asset('/build/assets/img/aliados/itcoalcoman.png') }}" alt="itcoalcoman">

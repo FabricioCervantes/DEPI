@@ -58,17 +58,7 @@
                     <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                 @enderror
             </div>
-            <div class="mt-4">
-                <x-label for="Volumen" value="Prueba Doc" />
-                @for ($i = 0; $i < count($autorNombre); $i++)
-                    <div class="flex gap-5">
-                        <div class="mt-4 w-full">
-                            <x-label for="autorApellidos" value="iD del autor" />
-                            {{ $idAutor[$i] }}
-                        </div>
-                    </div>
-                @endfor
-            </div>
+
         </x-slot>
         <x-slot name="footer" class="gap-5">
             <div class="flex justify-between w-full">

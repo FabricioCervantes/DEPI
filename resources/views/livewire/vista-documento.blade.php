@@ -1,6 +1,6 @@
 @section('title', 'Vista de documento')
 
-<div class=" grid md:grid-cols-2 md:h-[90vh] gap-5 p-5 w-full">
+<div class="grid md:grid-cols-2 md:h-[90vh] gap-5 p-5 w-full">
     <div class="flex flex-col gap-5  bg-white p-5 rounded-md justify-around divide-gray-800">
         @if ($documento[0]->idArticulo != null)
             <div class="">
@@ -127,8 +127,8 @@
         @endif
 
     </div>
-    <div class="hidden md:flex justify-center md:w-full">
-        <iframe class="md:w-full" src="{{ asset('/storage/docs/' . $documento[0]->url) }}" frameborder="0"></iframe>
+    <div class="hidden md:flex justify-center w-full">
+        <iframe class="w-full" src="{{ asset('/storage/docs/' . $documento[0]->url) }}" frameborder="0"></iframe>
     </div>
 
     <a href="{{ asset('/storage/docs/' . $documento[0]->url) }}" download
