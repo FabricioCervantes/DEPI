@@ -34,7 +34,7 @@
         <x-secondary-button>Buscar</x-secondary-button>
     </div>
     @if ($usuarios->count())
-        <table class="min-w-full sm:hidden text-left text-sm font-light">
+        <table class="min-w-full sm:hidden md:block text-left text-sm font-light">
             <thead class="border-b font-medium bg-slate-50">
                 <tr>
                     <th scope="col" class="px-5 py-4">Nombre</th>
