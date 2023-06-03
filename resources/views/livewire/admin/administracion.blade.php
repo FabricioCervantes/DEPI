@@ -143,7 +143,7 @@
 
                 </table>
                 <div class="flex w-full justify-center">
-                    <a href="{{ route('GestionUsuarios') }}"><button
+                    <a href="{{ route('instituciones') }}"><button
                             class="rounded-md p-2 text-lg bg-blue-950 text-white mt-2">Ver todas las
                             instituciones</button></a>
                 </div>
