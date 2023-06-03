@@ -2,7 +2,7 @@
 <div class="p-5 flex justify-center items-center">
     <div class="flex w-full flex-col justify-center items-center rounded">
         <h1 class="text-4xl font-bold text-center mb-5">Panel de administración</h1>
-        <div class="bg-white grid sm:grid-cols-2">
+        <div class="bg-white grid md:flex">
             <div class="grid md:grid-cols-2 w-[100%]  p-2 items-center  rounded-md shadow-sm">
                 <div class="flex justify-center items-center">
                     <h1 class="text-xl font-bold">Revisar documentos</h1>
