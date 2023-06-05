@@ -24,7 +24,8 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:255'],
-            'email' => 'required|email|max:255|regex:/^.*@morelia\.tecnm\.mx$/i|unique:users',
+            // 'email' => 'required|email|max:255|regex:/^.*@morelia\.tecnm\.mx$/i|unique:users',
+            'email' => 'required|email|max:255|unique:users',
             'tipou' => ['required', 'string',],
             'nacimiento' => ['required', 'date',],
             'sexo' => ['required', 'string',],
