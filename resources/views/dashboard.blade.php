@@ -17,6 +17,7 @@
                 alt="mapa tec">
         </div>
     </div>
+    <div>{{ Auth::user() }}</div>
     <div class="py-12">
         <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl p-10 sm:rounded-lg">
