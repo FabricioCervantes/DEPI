@@ -130,9 +130,9 @@
                         class="border-gray-300 w-full mt-1 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                         name="institucion" required>
                         <option value="">Seleccione...</option>
-                        @foreach ($instituciones as $item)
+                        {{-- @foreach ($instituciones as $item)
                             <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
-                        @endforeach
+                        @endforeach --}}
                         @error('institucion')
                             <span class="text-red-500 text-sm">El campo es obligatorio.</span>
                         @enderror
