@@ -57,7 +57,7 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => bcrypt($input['password']),
             ]);
-            $user->assignRole('Estudiante');
+            $user->assignRole('Admin');
         }
 
         if ($input['tipou'] === 'A') {
@@ -79,7 +79,7 @@ class CreateNewUser implements CreatesNewUsers
                 'expediente' => $input['conacyt'],
                 'cvu' => $input['cvu'],
             ]);
-            $user->assignRole('Academico');
+            $user->assignRole('Admin');
         }
 
         if ($input['tipou'] === 'L') {

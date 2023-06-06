@@ -27,7 +27,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * 
      */
 
-    public $incrementing = FALSE;
 
     protected $fillable = [
         'nombre',
